@@ -1,38 +1,109 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #e0c3fc, #8ec5fc);
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.box {
+  background: white;
+  padding: 30px 20px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+h1 {
+  color: #444;
+  margin-bottom: 10px;
+}
+
+.age {
+  color: #007bff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin: 5px 0 10px 0;
+}
+
+.progress-bar {
+  height: 12px;
+  background: #eee;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 12px 0;
+}
+
+.progress-fill {
+  height: 100%;
+  transition: width 1s ease-in-out;
+  border-radius: 10px;
+}
+
+.progress-text {
+  font-weight: bold;
+  color: #ff1493;
+  margin-top: 5px;
+}
+
+.birthday-msg {
+  /* background: linear-gradient(90deg, #ff9a9e, #fad0c4); */
+  border-radius: 16px;
+  padding: 12px;
+  margin-bottom: 15px;
+  animation: fadeInUp 1.2s ease-out;
+}
+
+.birthday-msg h1 {
+  margin: 0;
+  font-size: 1.4rem;
+  color: #d63384;
+}
+
+.birthday-msg p {
+  margin: 6px 0;
+  font-weight: 500;
+}
+
+.gif {
+  width: 100%;
+  border-radius: 15px;
+  margin-top: 8px;
+}
+
+/* 🎬 Animation */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
   }
-  to {
-    transform: rotate(360deg);
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 📱 Responsive */
+@media (max-width: 600px) {
+  .box {
+    padding: 20px 15px;
+  }
+  .age {
+    font-size: 1rem;
+  }
+  h1 {
+    font-size: 1.4rem;
   }
 }
