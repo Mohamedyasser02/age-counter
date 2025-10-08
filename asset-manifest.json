@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/age-counter/static/css/main.b38cb723.css",
+    "main.js": "/age-counter/static/js/main.85c87917.js",
+    "static/js/453.117b0875.chunk.js": "/age-counter/static/js/453.117b0875.chunk.js",
+    "index.html": "/age-counter/index.html",
+    "main.b38cb723.css.map": "/age-counter/static/css/main.b38cb723.css.map",
+    "main.85c87917.js.map": "/age-counter/static/js/main.85c87917.js.map",
+    "453.117b0875.chunk.js.map": "/age-counter/static/js/453.117b0875.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b38cb723.css",
+    "static/js/main.85c87917.js"
+  ]
+}
