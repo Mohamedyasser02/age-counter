@@ -91,7 +91,7 @@ export default function App() {
           <div className="birthday-msg">
             <h1>🎉 Happy Birthday Nour 🎉</h1>
             <p>Wish you all the best 🎂</p>
-            <img src="/img1.gif" alt="Happy Birthday" className="gif" />
+            <img src={`${process.env.PUBLIC_URL}/img1.gif`} alt="Happy Birthday" className="gif" />
           </div>
         )}
 
