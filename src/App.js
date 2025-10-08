@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 
 export default function App() {
-  const birthday = new Date(2007, 9, 8); // 11 Oct 2007
+  const birthday = new Date(2007, 9, 11); // 11 Oct 2007
   const today = new Date();
   const currentDay = `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
 
