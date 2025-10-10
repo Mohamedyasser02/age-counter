@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import "./App.css";
 
 export default function App() {
-  const birthday = new Date(2007, 9, 11); // 11 Oct 2007
+  const birthday = new Date(2007, 9, 10); // 11 Oct 2007
   const today = new Date();
   const currentDay = `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
 
@@ -11,11 +11,12 @@ export default function App() {
   const [progress, setProgress] = useState(0);
   const [animatedProgress, setAnimatedProgress] = useState(0);
   const [daysUntilNext, setDaysUntilNext] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef(null);
 
   useEffect(() => {
     const now = new Date();
 
-    // ======== حساب العمر ========
     let years = now.getFullYear() - birthday.getFullYear();
     let months = now.getMonth() - birthday.getMonth();
     let days = now.getDate() - birthday.getDate();
@@ -32,7 +33,6 @@ export default function App() {
 
     setAge({ years, months, days });
 
-    // ======== حساب عيد الميلاد ========
     const bdMonth = birthday.getMonth();
     const bdDate = birthday.getDate();
 
@@ -52,7 +52,6 @@ export default function App() {
     const daysUntil = Math.ceil((nextBirthday - now) / msPerDay);
     setDaysUntilNext(daysUntil >= 0 ? daysUntil : 0);
 
-    // ======== Progress bar ========
     const daysSinceLast = (now - lastBirthday) / msPerDay;
     const daysInYear = (nextBirthday - lastBirthday) / msPerDay;
     const unitsTotal = 48;
@@ -67,7 +66,6 @@ export default function App() {
     setProgress(targetPercent);
   }, [currentDay]);
 
-  // ======== Animation ========
   useEffect(() => {
     setAnimatedProgress(0);
     const target = Math.round(progress);
@@ -84,6 +82,14 @@ export default function App() {
     return () => clearInterval(interval);
   }, [progress]);
 
+  const handlePlay = () => {
+    if (audioRef.current) {
+      audioRef.current.play();
+      setIsPlaying(true);
+      audioRef.current.onended = () => setIsPlaying(false);
+    }
+  };
+
   return (
     <div className="container">
       <div className="box">
@@ -91,26 +97,38 @@ export default function App() {
           <div className="birthday-msg">
             <h1>🎉 Happy Birthday Nour 🎉</h1>
             <p>Wish you all the best 🎂</p>
-            <img src="/img1.gif" alt="Happy Birthday" className="gif" />
+            <img
+              src={`${process.env.PUBLIC_URL}/img1.gif`}
+              alt="Happy Birthday"
+              className="gif"
+            />
+            <audio ref={audioRef} src={`${process.env.PUBLIC_URL}/audio1.mp3`} />
+            {!isPlaying && (
+              <button onClick={handlePlay} className="play-btn">
+                Play Birthday Sound
+              </button>
+            )}
           </div>
         )}
 
         {!isBirthday ? (
-        <>
-          <h1> Nour Age Counter </h1>
-          <p> Nour is </p>
-          <p className="age">
-            {age.years} years, {age.months} months, {age.days} days
-          </p>
-
-          <p style={{ marginTop: 6, marginBottom: 0, color: "#444" }}>
-            {daysUntilNext} day(s) until Nour's birthday
-          </p>
-        </>
+          <>
+            <h1>Nour Age Counter</h1>
+            <p>Nour is</p>
+            <p className="age">
+              {age.years} years, {age.months} months, {age.days} days
+            </p>
+            <p style={{ marginTop: 6, marginBottom: 0, color: "#444" }}>
+              {daysUntilNext} day(s) until Nour's birthday
+            </p>
+          </>
         ) : (
-        <p className="age" style={{ fontWeight: "bold", color: "#ff1493", fontSize: "1.5rem" }}>
-          Nour is {age.years} 
-        </p>
+          <p
+            className="age"
+            style={{ fontWeight: "bold", color: "#ff1493", fontSize: "1.5rem" }}
+          >
+            Nour is {age.years}
+          </p>
         )}
 
         <div className="progress-bar" style={{ marginTop: 12 }}>

@@ -94,6 +94,22 @@ h1 {
     transform: translateY(0);
   }
 }
+.play-btn {
+  margin-top: 12px;
+  background: linear-gradient(90deg, #ff00cc, #3333ff);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 12px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.play-btn:hover {
+  opacity: 0.8;
+}
+
 
 /* 📱 Responsive */
 @media (max-width: 600px) {
